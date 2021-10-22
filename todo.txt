@@ -1,0 +1,32 @@
+Basic MVC framework OK CLEANING...
+Routing OK
+Login authenticating user name and password OK
+Use php hashing on password OK and verify with database OK
+
+
+Handle user files uploads TODO
+User Register TODO
+Error handling TODO
+Logging TODO
+Add some bootstrap in the website TODO
+
+
+Basic readme.md
+Include Your Project's Title. This is the name of the project. ...
+Write a Description. Your description is an extremely important aspect of your project. ...
+Add a Table of Contents (Optional) ...
+How to Install Your Project. ...
+How to Use Your Project. ...
+Include Credits. ...
+List the License. ...
+Badges.
+
+https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/
+
+
+upload files
+//        $target_dir = $this->app->rootpath . DIRECTORY_SEPARATOR . 'SampleWebApp' . DIRECTORY_SEPARATOR . 'userfiles' . DIRECTORY_SEPARATOR;
+//        $fileUploader = new FileUploader($target_dir);
+//        $fileUploader->upload();
+
+

@@ -1,0 +1,23 @@
+Steps when user request URL from browser
+
+1. User types URL
+
+2. Request is received and processed by the web server
+
+3. Request now moves to php and begins Request() method to invoked user requests. This captures all the information from URL and POST information,cookie etc.
+
+4. Request is passed to special class called Router which knows how to route the user to the corresponding controller
+
+5. RouteTable redirect the request to appropriate Controller which passed through the Interface IController and Controller class. 
+   The default URL controller to match is /{controller}/{action}/{id}?{querystring}
+
+6. In Controller appropriate action is invokes (as defined in URL), for example index() method
+
+7. The controller then decides which view to render. The convention is to match the name of the action to the name of the view. HomeController’s action Index( ) will look in the directory /View/Home and select the file index.php.
+
+8. View is rendered and HTML output is displayed to user.
+
+This is the flow of my MVC.
+
+
+https://www.12factor.net/

@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "mywebshop\\" : "./"
+        }
+    },
+    "config": {
+        "disable-tls": false,
+        "secure-http": true
+    },
+    "require": {
+        "robmorgan/phinx": "^0.12.7"
+    }
+}
