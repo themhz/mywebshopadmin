@@ -4,6 +4,7 @@ use mywebshop\components\core\Controller as baseController;
 use mywebshop\components\core\View;
 use mywebshop\models\Products;
 
+
 class Controller extends baseController{
     
     public function __construct($app) {

@@ -47,12 +47,11 @@
             <div class="menu-inner">
                 <nav>
                     <ul class="metismenu" id="menu">
-                        <li class="active" style="display: none">
-                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
+                        <li class="active">
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Διαχείριση</span></a>
                             <ul class="collapse">
-                                <li class="active"><a href="index.html">ICO dashboard</a></li>
-                                <li><a href="index2.html">Ecommerce dashboard</a></li>
-                                <li><a href="index3.html">SEO dashboard</a></li>
+                                <li class="active"><a href="/categories">Κατηγορίες</a></li>
+                                <li class="active"><a href="/test">Test</a></li>
                             </ul>
                         </li>
                         <li id="categoryproducts">
@@ -560,6 +559,36 @@
 <script src="assets/js/plugins.js"></script>
 <script src="assets/js/scripts.js" defer></script>
 
-</body>
+<script defer>
+    let counter = 0;
+    $(document).ready(function(){
 
+        $('#nestedDemo').sortable();
+        $('#nestedDemo11').sortable();
+        $('#nestedDemo12').sortable();
+        //$('.list-group-item nested-1').sortable();
+
+
+        //dragable($('#nestedDemo'));
+
+        //alert(1);
+        //console.log($('#nestedDemo').)
+        //$('#nestedDemo').sortable();
+        // for (var i = 0; i < nestedSortables.length; i++) {
+        //     new Sortable(nestedSortables[i], {
+        //         group: 'nested',
+        //         animation: 150,
+        //         fallbackOnBody: true,
+        //         swapThreshold: 0.65
+        //     });
+        // }
+    });
+
+    function dragable(elem){
+        elem.children.forEach(function(item) {
+           console.log(item);
+        });
+    }
+</script>
+</body>
 </html>

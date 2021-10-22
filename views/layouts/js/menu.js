@@ -108,6 +108,7 @@ class Menu{
                 //div.classList.add("nav-link");
                 //div.classList.add("category-item");
                 div.href = "javascript:void(0)";
+                //alert(element.name);
                 div.innerText = element.name;
                 div.setAttribute("aria-expanded", false);
                 div.onclick = function(){
