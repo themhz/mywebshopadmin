@@ -1,5 +1,26 @@
+<!doctype html>
+<html class="no-js" lang="en">
 
-<button onclick="save()">Save Menu</button>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>srtdash - ICO Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+        
+		
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.1/jquery.mobile.min.js"></script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+</head>
+
+<body>
+		
 <div class="container">
     <h3 class="title" id="title0">jQuery Nested Sortable Plugin Demo</h3>
     <ul class="space first-space" id="space0">
@@ -148,20 +169,22 @@
     .first-space { margin-left: 10px; }
 </style>
 
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.1/jquery.mobile.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
 <script defer>
     $(document).ready(function(){
+
         calcWidth($('#title0'));
+
         window.onresize = function(event) {
-            // console.log("window resized");
+            console.log("window resized");
+
+            //method to execute one time after a timer
 
         };
 
+//recursively calculate the Width all titles
         function calcWidth(obj){
-            // console.log('---- calcWidth -----');
+            console.log('---- calcWidth -----');
 
             var titles = $(obj).siblings('.space').children('.route').children('.title');
 
@@ -169,61 +192,50 @@
 
                 var pTitleWidth = parseInt($(obj).css('width'));
                 var leftOffset = parseInt($(obj).siblings('.space').css('margin-left'));
+
                 var newWidth = pTitleWidth - leftOffset;
 
                 if ($(obj).attr('id') == 'title0'){
-                    // console.log("called");
+                    console.log("called");
+
                     newWidth = newWidth - 10;
                 }
+
                 $(element).css({
                     'width': newWidth,
                 })
+
                 calcWidth(element);
             });
+
         }
 
         $('.space').sortable({
             connectWith:'.space',
             tolerance:'intersect',
-            over:function(event,ui){},
+            over:function(event,ui){
+
+            },
             receive:function(event, ui){
+
                 calcWidth($(this).siblings('.title'));
             }
         });
 
         $('.space').disableSelection();
+
+
     });
 
-    let tree = [];
-    function save(){
-        tree = [];
-        ulLiToJson($("#space0").children("li"));
-        console.log(tree);
-    }
-
-
-
-    //Pass a list of li
-    function ulLiToJson(elem){
-        //for each li
-        elem.each(function(a, item){
-
-            let name = $(item).children("h3").html();
-            let elements = [];
-
-            $(item).children("ul").children("li").each(function(b, subitem){
-                elements.push($(subitem).children("h3").html());
-            })
-            let obj = {'name': name, 'elements' : elements}
-            tree.push(obj);
-
-            //print the h3 html text which is only inside the li and the number of nested lis in the nested ul
-            //console.log($(item).children("h3").html() + " " + $(item).children("ul").children("li").length);
-            //if it has more nested ul-li then find them and parse them recursively
-            if($(item).children("ul").children("li").length>0){
-                ulLiToJson($(item).children("ul").children("li"));
-            }
-        });
-
-    }
 </script>
+
+
+
+		
+
+
+
+
+
+</body>
+</html>
