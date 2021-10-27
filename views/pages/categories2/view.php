@@ -1,5 +1,6 @@
 
 <button onclick="save()">Save Menu</button>
+<button onclick="showTree()">Show Tree</button>
 <div class="container">
     <h3 class="title" id="title0">jQuery Nested Sortable Plugin Demo</h3>
     <ul class="space first-space" id="space0">
@@ -154,34 +155,37 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 <script defer>
     $(document).ready(function(){
-        calcWidth($('#title0'));
         window.onresize = function(event) {
-            // console.log("window resized");
-
+            calcWidth($('#title0'));
         };
+    });
 
-        function calcWidth(obj){
-            // console.log('---- calcWidth -----');
+    function showTree(){
+        calcWidth($('#title0'));
+        addSortable();
+    }
+    function calcWidth(obj){
+        // console.log('---- calcWidth -----');
 
-            var titles = $(obj).siblings('.space').children('.route').children('.title');
+        var titles = $(obj).siblings('.space').children('.route').children('.title');
 
-            $(titles).each(function(index, element){
+        $(titles).each(function(index, element){
 
-                var pTitleWidth = parseInt($(obj).css('width'));
-                var leftOffset = parseInt($(obj).siblings('.space').css('margin-left'));
-                var newWidth = pTitleWidth - leftOffset;
+            var pTitleWidth = parseInt($(obj).css('width'));
+            var leftOffset = parseInt($(obj).siblings('.space').css('margin-left'));
+            var newWidth = pTitleWidth - leftOffset;
 
-                if ($(obj).attr('id') == 'title0'){
-                    // console.log("called");
-                    newWidth = newWidth - 10;
-                }
-                $(element).css({
-                    'width': newWidth,
-                })
-                calcWidth(element);
-            });
-        }
-
+            if ($(obj).attr('id') == 'title0'){
+                // console.log("called");
+                newWidth = newWidth - 10;
+            }
+            $(element).css({
+                'width': newWidth,
+            })
+            calcWidth(element);
+        });
+    }
+    function addSortable(){
         $('.space').sortable({
             connectWith:'.space',
             tolerance:'intersect',
@@ -192,8 +196,9 @@
         });
 
         $('.space').disableSelection();
-    });
+    }
 
+    //Saves the menu state in the database
     let tree = [];
     function save(){
         tree = [];
@@ -204,6 +209,7 @@
 
     }
 
+    //Saves the menu state in the database
     function saveToDb(obj){
         console.log(obj);
 

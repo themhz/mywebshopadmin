@@ -1,6 +1,6 @@
 <?php
 
-namespace mywebshop\views\pages\test;
+namespace mywebshop\views\pages\categories2;
 
 use mywebshop\components\core\Controller as baseController;
 use mywebshop\components\core\View;
@@ -17,22 +17,7 @@ class Controller extends baseController
 
     public function post()
     {
-        $nodes = $this->app->request->body();
-        foreach($nodes as $node){
-            echo $node->name;
-            //print_r(count((array)$node->elements));
-            //die();
-            if(count((array)$node->elements)){
-                foreach($node->elements as $subnode) {
-                    echo ' has ' . $subnode . "\n";
-                }
-            }else{
-                echo " has no sub nodes \n";
-            }
 
-
-
-        }
     }
 
     public function get()
@@ -41,7 +26,7 @@ class Controller extends baseController
 
         $categories = $categories->select();
         $view = new view($this->app->request);
-        echo $view->render('main', "test", ["categories"=>$categories],'public');
+        echo $view->render('main', "categories2", ["categories"=>$categories],'public');
 
     }
 

@@ -81,6 +81,7 @@
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Διαχείριση</span></a>
                             <ul class="collapse">
                                 <li class="active"><a href="/categories">Κατηγορίες</a></li>
+                                <li class="active"><a href="/categories2">Κατηγορίες 2</a></li>
                                 <li class="active"><a href="/test">Test</a></li>
                             </ul>
                         </li>
