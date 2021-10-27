@@ -1,4 +1,4 @@
-class Menu{
+class Menu2{
     list
     liid
     clickedli
@@ -6,7 +6,7 @@ class Menu{
 
     }
 
-    create(){
+    create(root){
         let self = this;
         this.liid = 0;
         this.clickedli = [];
@@ -14,20 +14,16 @@ class Menu{
         //     if (evt.target.readyState == "complete") {
                 self.list = document.createElement('ul');
                 //self.list.classList.add("navbar-item");
-                self.list.classList.add("collapse");
+                self.list.classList.add("space");
+                self.list.classList.add("first-space");
+                self.list.id = "space0";
 
-                let a = document.createElement('a');
-                a.href = "javascript:void(0)";
-                a.setAttribute("aria-expanded", false);
+                let h3 = document.createElement("h3");
+                h3.innerHTML = "Προϊόντα";
+                h3.classList.add("title");
+                h3.id = "title0";
 
-                let i = document.createElement('i');
-                i.classList.add("fa");
-                i.classList.add("fa-cubes");
 
-                let span = document.createElement("span");
-                span.innerHTML = "Προϊόντα";
-                a.append(i);
-                a.append(span);
 
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
@@ -36,10 +32,10 @@ class Menu{
                         let tree = self.buildList(response);
 
                         self.buildUlLi(tree, self.list);
-                        document.getElementById('categoryproducts').append(a);
-                        document.getElementById('categoryproducts').append(self.list);
+                        document.getElementById(root).append(h3);
+                        document.getElementById(root).append(self.list);
                         //self.loadMenuState();
-                        self.colorLink();
+                        //self.colorLink();
                     }
                 };
                 //console.log(window.location.origin);
@@ -73,56 +69,37 @@ class Menu{
         return root;
     }
 
+
     buildUlLi(tree, ul) {
 
         let self = this;
         let display = "";
         this.liid ++;
         tree.children.forEach(function callbackFn(element, index, array) {
-            // if(parseInt(element.lvl) > 0)
-            //     display = "none";
-            // else
-            //     display = "";
 
             let li = document.createElement('li');
             li.id = 'li'+self.liid;
-            //li.classList.add("nav-item");
-            li.classList.add("level"+element.lvl);
-            li.setAttribute('level', element.lvl);
+            li.classList.add("route");
 
-            li.style.display = display;
+            let h3 = document.createElement('h3');
+            h3.innerText = element.name + '('+element.num_of_products+')';
+            h3.classList.add("title");
+            h3.id="title"+self.liid;
 
+            let span = document.createElement('span');
+            span.classList.add("ui-icon");
+            span.classList.add("ui-icon-arrow-4-diag");
 
-            if(parseInt(element.num_of_products)>0) {
-                let a = document.createElement('a');
-                //a.classList.add("nav-link");
-                a.href = "/products?category="+element.id;
-                //a.href = "#";
-                a.innerText = element.name + '('+element.num_of_products+')';
-                //a.setAttribute("aria-expanded", false);
-                li.append(a);
-                ul.append(li);
-            }
-            else{
-                let div = document.createElement('a');
-                //div.classList.add("nav-link");
-                //div.classList.add("category-item");
-                div.href = "javascript:void(0)";
-                //alert(element.name);
-                div.innerText = element.name;
-                div.setAttribute("aria-expanded", false);
-                div.onclick = function(){
-                    self.clickMenuItem(div, element.lvl)
-                };
-                li.append(div);
-                let ulchild = document.createElement('ul');
-                ulchild.classList.add("collapse");
-                self.buildUlLi(element, ulchild);
-                li.append(ulchild);
-                ul.append(li);
-            }
+            let ulchild = document.createElement('ul');
+            ulchild.classList.add("space");
+            ulchild.id="space"+self.liid;
 
+            self.buildUlLi(element, ulchild);
 
+            li.append(h3);
+            li.append(span);
+            li.append(ulchild);
+            ul.append(li);
 
         });
     }
@@ -164,19 +141,19 @@ class Menu{
         }
         localStorage.setItem('menustate', items);
     }
-
-    loadMenuState(){
-
-        if (localStorage.getItem("menustate") !== null && localStorage.getItem("menustate")!=="") {
-            let menuItems = localStorage.getItem("menustate").split(",");
-            for(let item of menuItems){
-                //this.colorSelected(document.querySelector('#'+item).querySelector('div'));
-                let level = document.querySelector('#'+item).getAttribute('level');
-                let items = document.querySelector('#'+item).querySelector('ul').querySelectorAll('li[level="'+(parseInt(level)+1)+'"]');
-                this.openMenuItem(items);
-            }
-        }
-    }
+    //
+    // loadMenuState(){
+    //
+    //     if (localStorage.getItem("menustate") !== null && localStorage.getItem("menustate")!=="") {
+    //         let menuItems = localStorage.getItem("menustate").split(",");
+    //         for(let item of menuItems){
+    //             //this.colorSelected(document.querySelector('#'+item).querySelector('div'));
+    //             let level = document.querySelector('#'+item).getAttribute('level');
+    //             let items = document.querySelector('#'+item).querySelector('ul').querySelectorAll('li[level="'+(parseInt(level)+1)+'"]');
+    //             this.openMenuItem(items);
+    //         }
+    //     }
+    // }
 
     colorSelected(obj){
 

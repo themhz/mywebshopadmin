@@ -1,59 +1,9 @@
 
 <button onclick="save()">Save Menu</button>
 <button onclick="showTree()">Show Tree</button>
-<div class="container">
-    <h3 class="title" id="title0">jQuery Nested Sortable Plugin Demo</h3>
-    <ul class="space first-space" id="space0">
-        <li class="route">
-            <h3 class="title" id="title1">A</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space" id="space1">
-            </ul>
-        </li>
-        <li class="route">
-            <h3 class="title" id="title2">B</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space" id="space2">
-                <li class="route">
-                    <h3 class="title" id="title3">C</h3>
-                    <span class="ui-icon ui-icon-arrow-4-diag"></span>
-                    <ul class="space" id="space3">
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li class="route">
-            <h3 class="title" id="title4">D</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space" id="space4">
-            </ul>
-        </li>
-        <li class="route">
-            <h3 class="title">E</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space">
-            </ul>
-        </li>
-        <li class="route">
-            <h3 class="title">F</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space">
-            </ul>
-        </li>
-        <li class="route">
-            <h3 class="title">G</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space">
-            </ul>
-        </li>
-        <li class="route">
-            <h3 class="title">H</h3>
-            <span class="ui-icon ui-icon-arrow-4-diag"></span>
-            <ul class="space">
-            </ul>
-        </li>
-    </ul>
+<div class="container" id="container2">
 </div>
+
 
 <style>
     .container {
@@ -158,6 +108,9 @@
         window.onresize = function(event) {
             calcWidth($('#title0'));
         };
+
+        let menu = new Menu2();
+        menu.create("container2");
     });
 
     function showTree(){

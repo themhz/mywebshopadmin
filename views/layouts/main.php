@@ -25,6 +25,7 @@
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
     <script src="js/menu.js"></script>
+    <script src="js/menu2.js"></script>
     <!-- offset area end -->
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
