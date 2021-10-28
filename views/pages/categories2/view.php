@@ -1,6 +1,6 @@
 
 <button onclick="save()">Save Menu</button>
-<button onclick="showTree()">Show Tree</button>
+<!--<button onclick="showTree()">Show Tree</button>-->
 <div class="container" id="container2">
 </div>
 
@@ -110,7 +110,11 @@
         };
 
         let menu = new Menu2();
-        menu.create("container2");
+        menu.create("container2",function(){
+            showTree();
+            //alert("created");
+            //addSortable()
+        });
     });
 
     function showTree(){
@@ -167,7 +171,7 @@
         console.log(obj);
 
         $.ajax({
-            url: 'http://192.168.1.2:8002/test',
+            url: '/categories2',
             type: 'POST',
             data: JSON.stringify(obj),
             contentType: 'application/json; charset=utf-8',
@@ -180,8 +184,6 @@
 
     }
 
-
-
     //Pass a list of li
     function ulLiToJson(elem){
         //for each li
@@ -191,11 +193,12 @@
             let elements = [];
 
             $(item).children("ul").children("li").each(function(b, subitem){
-                elements.push($(subitem).children("h3").html());
+                elements.push({'name':$(subitem).children("h3").html(), 'id':$(subitem).attr('id')});
             })
 
+
             const ele = Object.assign({}, elements);
-            let obj = {'name': name, 'elements' : ele}
+            let obj = {'name': name, 'id': $(item).attr('id'), 'elements' : ele}
             tree.push(obj);
 
             //print the h3 html text which is only inside the li and the number of nested lis in the nested ul

@@ -6,7 +6,7 @@ class Menu2{
 
     }
 
-    create(root){
+    create(root, aftercreate = null){
         let self = this;
         this.liid = 0;
         this.clickedli = [];
@@ -34,6 +34,9 @@ class Menu2{
                         self.buildUlLi(tree, self.list);
                         document.getElementById(root).append(h3);
                         document.getElementById(root).append(self.list);
+                        if(aftercreate !=null){
+                            aftercreate();
+                        }
                         //self.loadMenuState();
                         //self.colorLink();
                     }
@@ -78,11 +81,12 @@ class Menu2{
         tree.children.forEach(function callbackFn(element, index, array) {
 
             let li = document.createElement('li');
-            li.id = 'li'+self.liid;
+            //li.id = 'li'+self.liid;
+            li.id = element.id
             li.classList.add("route");
 
             let h3 = document.createElement('h3');
-            h3.innerText = element.name + '('+element.num_of_products+')';
+            h3.innerText = element.id + ' ' +element.name + '('+element.num_of_products+')';
             h3.classList.add("title");
             h3.id="title"+self.liid;
 

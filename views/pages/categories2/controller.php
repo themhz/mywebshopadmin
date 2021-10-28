@@ -17,7 +17,28 @@ class Controller extends baseController
 
     public function post()
     {
+        $nodes = $this->app->request->body();
+        $categories = new Categories();
+        foreach($nodes as $node){
+            //echo $node->id . ' ' . $node->name;
+            //print_r(count((array)$node->elements));
+            //die();
+            if(count((array)$node->elements)){
+                foreach($node->elements as $subnode) {
+                    //echo ' has ' . $subnode->id . "\n";
+                    $categories->id = $subnode->id;
+                    $categories->parent_id = $node->id;
+                    $categories->update();
 
+                }
+
+            }else{
+                echo " has no sub nodes \n";
+            }
+
+        }
+
+        echo "finished update";
     }
 
     public function get()
