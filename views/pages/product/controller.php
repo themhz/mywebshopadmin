@@ -4,6 +4,7 @@ use mywebshop\components\core\Controller as baseController;
 use mywebshop\components\core\View;
 use mywebshop\models\Products;
 use mywebshop\models\ProductImages;
+use mywebshop\components\handlers\Response;
 
 class Controller extends baseController{
     
@@ -11,29 +12,22 @@ class Controller extends baseController{
         parent::__construct($app);
     }
 
-    public function post(){        
-        
-        echo "this is the products";     
-    }
+    public function post(){
 
-//    public function get(){
-//
-//        $requestparams = $this->app->request->body();
-//
-//         $params = [];
-//         $p = new Products();
-//         $sql = "SELECT * from products ";
-//        if(isset($requestparams['product_id'])){
-//            $sql .= ' where id = :product_id';
-//            $params = [':product_id' => $requestparams['product_id']];
-//        }
-//
-//         $products = $p->customselect($sql, $params);
-//
-//
-//         $view = new view($this->app->request);
-//         echo $view->render('inner', $this->app->request->path() , $products);
-//    }
+        $params = $this->app->request->body();
+        $product = new Products();
+        $product->loadData($params);
+        $result = $product->update();
+        $resp =  new Response();
+        if($result['result']){
+            $resp->setStatusCode(200);
+            $resp->respond(["message" => "update was successfull", "result" => true]);
+        }else{
+            $resp->setStatusCode(200);
+            $resp->respond(["message" => "update did not succeed", "result" => false, "error"=>$resp]);
+        }
+
+    }
 
     public function get(){
 
@@ -45,7 +39,7 @@ class Controller extends baseController{
 
         $product->user = $this->app->user;
         $view = new view($this->app->request);
-        echo $view->render('inner', $this->app->request->path(), $product, 'public');
+        echo $view->render('main', $this->app->request->path(), $product, 'public');
     }
 
     public function put(){

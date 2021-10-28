@@ -12,7 +12,7 @@ class Products extends Model
     public string $description;
     public float $price;
     public int $stock;
-    public int $enabled;
+    public int $published;
     public int $width;
     public int $height;
     public int $length;
@@ -108,7 +108,7 @@ class Products extends Model
     /**
      * @return int
      */
-    public function getEnabled(): int
+    public function getPublished(): int
     {
         return $this->enabled;
     }
@@ -116,7 +116,7 @@ class Products extends Model
     /**
      * @param int $enabled
      */
-    public function setEnabled(int $enabled): void
+    public function setPublished(int $enabled): void
     {
         $this->enabled = $enabled;
     }

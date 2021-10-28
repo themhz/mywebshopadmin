@@ -10,7 +10,7 @@
                             <table class="table table-hover progress-table text-center">
                                 <thead class="text-uppercase">
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">Κωδ</th>
                                     <th scope="col">Εικόνα</th>
                                     <th scope="col">Όνομα Προϊόντος</th>
                                     <th scope="col">Τιμή</th>
@@ -23,7 +23,7 @@
                                 <?php
                                 foreach ($params[0] as $rows) { ?>
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row"><?php echo $rows->id ?></th>
                                     <td><img src="/userfiles/products/<?php echo $rows->image ?>" alt="Product Image" style="width: 100px;"></td>
                                     <td><?php echo $rows->name ?></td>
                                     <td>&euro; <?php echo $rows->price ?></td>
@@ -35,7 +35,7 @@
                                     <td><span class="status-p bg-primary">pending</span></td>
                                     <td>
                                         <ul class="d-flex justify-content-center">
-                                            <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                                            <li class="mr-3"><a href="/product?product_id=<?php echo $rows->id ?>" class="text-secondary"><i class="fa fa-edit"></i></a></li>
                                             <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                         </ul>
                                     </td>
