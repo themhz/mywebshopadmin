@@ -180,7 +180,6 @@ class Menu{
         let path = window.location.pathname.substr(1, window.location.pathname.length);
         let search = window.location.search;
         let element = document.querySelector('#menu').querySelector('a[href="/'+path+search+'"]');
-        console.log(element);
         if(element !==null){
             //this.colorSelected(element.parentElement);
             this.colorSelected(element);

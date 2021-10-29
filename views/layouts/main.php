@@ -55,6 +55,7 @@
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/scripts.js" defer></script>
+    <script src="js/breadcrump.js" defer></script>
 </head>
 
 <body>
@@ -82,8 +83,8 @@
                         <li class="active">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Διαχείριση</span></a>
                             <ul class="collapse">
-                                <li class="active"><a href="/categories">Κατηγορίες</a></li>
-                                <li class="active"><a href="/categories2">Κατηγορίες 2</a></li>
+                                <li class="active"><a href="/categories">Κατηγορίες Λίστα</a></li>
+                                <li class="active"><a href="/categories2">Κατηγορίες Ιεραρχία</a></li>
                             </ul>
                         </li>
                         <li id="categoryproducts">
@@ -351,9 +352,8 @@
                 <div class="col-sm-6">
                     <div class="breadcrumbs-area clearfix">
                         <h4 class="page-title pull-left">Dashboard</h4>
-                        <ul class="breadcrumbs pull-left">
-                            <li><a href="index.html">Home</a></li>
-                            <li><span>Dashboard</span></li>
+                        <ul class="breadcrumbs pull-left" id="breadcrump">
+
                         </ul>
                     </div>
                 </div>
@@ -561,5 +561,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        let breadcrump =  new Breadcrump("breadcrump");
+        breadcrump.create();
+    });
+</script>
 </body>
 </html>
