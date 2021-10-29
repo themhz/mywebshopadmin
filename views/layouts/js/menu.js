@@ -12,13 +12,18 @@ class Menu{
         this.clickedli = [];
         // document.addEventListener('readystatechange', function(evt) {
         //     if (evt.target.readyState == "complete") {
+
+                document.querySelector('#categoryproducts').classList.add("active");
+
                 self.list = document.createElement('ul');
-                //self.list.classList.add("navbar-item");
                 self.list.classList.add("collapse");
+                self.list.classList.add("in");
+                self.list.style = "";
 
                 let a = document.createElement('a');
                 a.href = "javascript:void(0)";
-                a.setAttribute("aria-expanded", false);
+                a.setAttribute("aria-expanded", "true");
+                a.classList.add("selected");
 
                 let i = document.createElement('i');
                 i.classList.add("fa");
@@ -38,11 +43,10 @@ class Menu{
                         self.buildUlLi(tree, self.list);
                         document.getElementById('categoryproducts').append(a);
                         document.getElementById('categoryproducts').append(self.list);
-                        //self.loadMenuState();
+                        self.loadMenuState();
                         self.colorLink();
                     }
                 };
-                //console.log(window.location.origin);
                 xhttp.open("GET", window.location.origin+"?method=getmenu", false);
                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 xhttp.send();
@@ -79,14 +83,9 @@ class Menu{
         let display = "";
         this.liid ++;
         tree.children.forEach(function callbackFn(element, index, array) {
-            // if(parseInt(element.lvl) > 0)
-            //     display = "none";
-            // else
-            //     display = "";
 
             let li = document.createElement('li');
             li.id = 'li'+self.liid;
-            //li.classList.add("nav-item");
             li.classList.add("level"+element.lvl);
             li.setAttribute('level', element.lvl);
 
@@ -95,20 +94,14 @@ class Menu{
 
             if(parseInt(element.num_of_products)>0) {
                 let a = document.createElement('a');
-                //a.classList.add("nav-link");
                 a.href = "/products?category="+element.id;
-                //a.href = "#";
                 a.innerText = element.name + '('+element.num_of_products+')';
-                //a.setAttribute("aria-expanded", false);
                 li.append(a);
                 ul.append(li);
             }
             else{
                 let div = document.createElement('a');
-                //div.classList.add("nav-link");
-                //div.classList.add("category-item");
                 div.href = "javascript:void(0)";
-                //alert(element.name);
                 div.innerText = element.name;
                 div.setAttribute("aria-expanded", false);
                 div.onclick = function(){
@@ -121,9 +114,6 @@ class Menu{
                 li.append(ulchild);
                 ul.append(li);
             }
-
-
-
         });
     }
 
@@ -133,19 +123,12 @@ class Menu{
         let clickedItem = obj.parentElement;
         let ul = clickedItem.querySelector('ul');
         let li = ul.querySelectorAll('li[level="'+(parseInt(lvl)+1)+'"]');
-        //this.openMenuItem(li);
         this.saveMenuState(clickedItem.id);
     }
 
-    openMenuItem(items){
+    colorSelected(items){
 
-        for (let item of items) {
-            if(item.style.display == ""){
-                item.style.display="none";
-            }else{
-                item.style.display="";
-            }
-        }
+        alert(1);
     }
 
     saveMenuState(menuItem){
@@ -153,8 +136,7 @@ class Menu{
         let items = [];
         if (localStorage.getItem("menustate") === null || localStorage.getItem("menustate")==="") {
             items[0] = menuItem;
-        }else{
-            items = localStorage.getItem("menustate").split(",");
+        }else{items = localStorage.getItem("menustate").split(",");
             if(!items.includes(menuItem)) {
                 items.push(menuItem);
             }else{
@@ -168,12 +150,19 @@ class Menu{
     loadMenuState(){
 
         if (localStorage.getItem("menustate") !== null && localStorage.getItem("menustate")!=="") {
+
             let menuItems = localStorage.getItem("menustate").split(",");
             for(let item of menuItems){
-                //this.colorSelected(document.querySelector('#'+item).querySelector('div'));
-                let level = document.querySelector('#'+item).getAttribute('level');
-                let items = document.querySelector('#'+item).querySelector('ul').querySelectorAll('li[level="'+(parseInt(level)+1)+'"]');
-                this.openMenuItem(items);
+                document.querySelector('#'+item).classList.add("active");
+                document.querySelector('#'+item).querySelector('a').setAttribute("aria-expanded", "true");
+                document.querySelector('#'+item).querySelector('a').classList.add("selected");
+                document.querySelector('#'+item).querySelector('ul').classList.add("in");
+                document.querySelector('#'+item).querySelector('ul').style = "";
+                // console.log(document.querySelector('#'+item).id);
+                //
+                // let level = document.querySelector('#'+item).getAttribute('level');
+                // let items = document.querySelector('#'+item).querySelector('ul').querySelectorAll('li[level="'+(parseInt(level)+1)+'"]');
+                // this.openMenuItem(items);
             }
         }
     }
@@ -190,9 +179,11 @@ class Menu{
     colorLink(){
         let path = window.location.pathname.substr(1, window.location.pathname.length);
         let search = window.location.search;
-        let element = document.querySelector('#menu').querySelector('a[href="'+path+search+'"]');
+        let element = document.querySelector('#menu').querySelector('a[href="/'+path+search+'"]');
+        console.log(element);
         if(element !==null){
-            this.colorSelected(element.parentElement);
+            //this.colorSelected(element.parentElement);
+            this.colorSelected(element);
         }
     }
 
