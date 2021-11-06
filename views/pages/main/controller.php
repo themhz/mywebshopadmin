@@ -9,7 +9,7 @@ use mywebshop\models\Categories;
 
 use SampleWebApp\models\Products;
 
-class Controller extends baseController
+class controller extends baseController
 {
 
     public function __construct($app)

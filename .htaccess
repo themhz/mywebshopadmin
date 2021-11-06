@@ -1,0 +1,16 @@
+RewriteEngine on
+
+DirectoryIndex index.php
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule . /index.php [L]
+
+# RewriteRule ^([^/]+)$ index.php?component=$1 [L]
+
+# RewriteRule ^([^/]+)/$ index.php?component=$1 [L]
+
+# RewriteRule ^([^/]+)/([^/]+)$ index.php?component=$1&id=$2 [L]
+

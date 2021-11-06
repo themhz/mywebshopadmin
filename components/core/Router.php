@@ -18,7 +18,7 @@
  */
 
 namespace mywebshop\components\core;
-
+use mywebshop\views\pages\controller;
 
 class Router
 {
@@ -39,7 +39,7 @@ class Router
     {
 
         try{
-            $controller = '\mywebshop\views\pages\\' . $this->getController() . '\Controller';
+            $controller = '\mywebshop\\views\pages\\' . $this->getController() . '\controller';            
             $this->loadController($controller);
 
         }catch(\Exception $ex){
@@ -77,8 +77,7 @@ class Router
     public function loadController($controller): void
     {        
       
-        // echo $controller; //mywebshop\views\main\Controller
-        // die();
+        
         $controller = new $controller($this->app);
         
         if(!empty($controller->method && method_exists($controller, $controller->method))){
@@ -94,7 +93,7 @@ class Router
 
     public function loadErrorController(): void
     {
-        $controller = '\mywebshop\views\error\Controller';
+        $controller = '\mywebshop\\views\\error\\Controller';
         $controller = new $controller($this->app);
         $controller->get();
     }
@@ -120,7 +119,7 @@ class Router
     }
 
     public function getController()
-    {
+    {     
 
         if ($this->path == "") {
             $controller = 'main';

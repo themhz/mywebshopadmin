@@ -31,7 +31,7 @@ class Controller extends baseController{
 
     public function get(){
 
-        $requestparams = $this->app->request->body();
+        $requestparams = $this->app->request->body();        
         $product = new Products();
         $ProductImages = new ProductImages();
         $product = $product->select(['id ='=>$requestparams['product_id']])[0];

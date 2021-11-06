@@ -26,7 +26,7 @@ class Controller extends baseController{
         
        
         $requestparams = $this->app->request->body();
-
+        
         $params = [];
         $p = new Products();
         $products = $p->getProductsByCategory($requestparams);
@@ -34,7 +34,7 @@ class Controller extends baseController{
         $products["user"] = $this->app->user;
         
         $view = new view($this->app->request);
-            echo $view->render('main', 'products', $products,'public');
+        echo $view->render('main', 'products', $products,'public');
     }
 
     public function put(){
